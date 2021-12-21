@@ -1,0 +1,68 @@
+﻿@model TesteOriginarios.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nm_img1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nm_img1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vb_img1)
+        </dt>
+
+        <dd>
+            <img src="@Url.Action("getImg1", "Usuarios", new { id = Model.id_usu })" alt="imagem1" />
+            @Html.DisplayFor(model => model.vb_img1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nm_img2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nm_img2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vb_img2)
+        </dt>
+
+        <dd>
+            <img src="@Url.Action("getImg2", "Usuarios", new { id = Model.id_usu })" alt="imagem2" />
+            @Html.DisplayFor(model => model.vb_img2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_usu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

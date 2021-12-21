@@ -1,0 +1,115 @@
+﻿@model Originarios.Models.Postagem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Postagem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.corpo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.corpo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nm_img1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nm_img1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vb_img1)
+        </dt>
+
+        <dd>
+            <img src="@Url.Action("getImg1", "Postagens", new { id = Model.id_post })" alt="imagem1" />
+            @*@Html.DisplayFor(model => model.vb_img1)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nm_img2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nm_img2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vb_img2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vb_img2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nm_img3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nm_img3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vb_img3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vb_img3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nm_img4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nm_img4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vb_img4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vb_img4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario1.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario1.nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_post }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

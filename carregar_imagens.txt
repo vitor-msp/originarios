@@ -1,0 +1,5 @@
+Gravando uma imagem no banco de dados
+https://www.youtube.com/watch?v=Qy2jxuwRqUo&list=WL&index=10
+----------------------------------------
+ASP.NET MVC EXIBINDO UMA IMAGEM DO BANCO DE DADOS
+https://www.youtube.com/watch?v=D7U8AFY3ZwI&list=WL&index=11
