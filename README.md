@@ -7,8 +7,7 @@ Desenvolvimento de um site para venda de produtos indígenas.
 *Em produção...*
 
 ###### Como contribuir
-- Para iniciar contribuindo: git clone https://github.com/vitor-msp/originarios.git
-- Para atualizar seu repositório local: git pull
+- Para iniciar contribuindo: crie um fork deste repositório, clone seu fork, realize as edições na sua máquina, dê um push pro seu fork, faça um pull request para este repositório
 
 Após o repositório local estar atualizado:
 
