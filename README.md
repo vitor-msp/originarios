@@ -21,4 +21,4 @@ data source=VITOR-PC;initial catalog=Originarios;
 ```
 Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
 ```
-4. Execute a aplicação
+5. Execute a aplicação
