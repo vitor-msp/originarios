@@ -206,14 +206,33 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Style.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Images\1d.png" />
+    <Content Include="Images\1e.png" />
+    <Content Include="Images\69 DEPOIS COM SOMBRA.png" />
+    <Content Include="Images\avatar.png" />
+    <Content Include="Images\cadastrar.png" />
+    <Content Include="Images\carrinho.png" />
+    <Content Include="Images\carrinho.svg" />
+    <Content Include="Images\comunicacao.png" />
+    <Content Include="Images\entrar.png" />
+    <Content Include="Images\fale-conosco.png" />
+    <Content Include="Images\favico.png" />
+    <Content Include="Images\favico3.png" />
+    <Content Include="Images\galeria2.jpeg" />
+    <Content Include="Images\galeria3.png" />
+    <Content Include="Images\galeria4.jpg" />
+    <Content Include="Images\home.png" />
+    <Content Include="Images\inicial.jpg" />
+    <Content Include="Images\login.png" />
+    <Content Include="Images\logo3.png" />
+    <Content Include="Images\loja.png" />
+    <Content Include="Images\publicacoes.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\share.png" />
+    <Content Include="Images\show-more.png" />
     <Content Include="Models\OriginariosModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OriginariosModel.edmx</DependentUpon>
@@ -224,8 +243,6 @@
       <DependentUpon>OriginariosModel.edmx</DependentUpon>
       <LastGenOutput>OriginariosModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\OriginariosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OriginariosModel.Designer.cs</LastGenOutput>
@@ -288,14 +305,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
