@@ -28,3 +28,5 @@ create table Postagem (
   constraint fk_post_usu foreign key (usuario) references Usuario (id_usu)
 );
 go
+insert into Usuario values ('Fulano de Tal','2000-01-20','teste@teste.com');
+go
