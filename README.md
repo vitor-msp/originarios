@@ -11,12 +11,13 @@ Desenvolvimento de um site para venda de produtos indígenas.
 
 Após o repositório local estar atualizado:
 
-1. Edite o arquivo Originarios/Web.config, na linha 13, inserindo o seu hostname após data source
+1. Rode o arquivo BancoDeDados/criarBD.sql no SQL Server
+2. Edite o arquivo Originarios/Originarios/Web.config, na linha 13, inserindo o seu hostname após data source
 ```
 data source=VITOR-PC;initial catalog=Originarios;
 ```
-2. Abra o arquivo Originarios.sln com o Visual Studio
-3. Para que os pacotes sejam ajustados, execute o comando abaixo no Console do Gerenciador de Pacotes
+3. Abra o arquivo Originarios.sln com o Visual Studio
+4. Para que os pacotes sejam ajustados, vá em Ferramentas -> Genreciador de Pacotes do NuGet -> Console do Gerenciador de Pacotes, depois execute o comando abaixo
 ```
 Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
 ```
