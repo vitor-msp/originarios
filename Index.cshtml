@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Originarios.Models.Postagem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+
+
+@foreach (var item in Model)
+    {
+
+<div class= "">
+    <div class="col-md-4 ">
+        <div class="card justify-content-center" style="">
+            <img src="@Url.Action("getImg1", "Postagens", new { id = item.id_post})" class="card-img-top" alt="..." style="width: 26rem" height="330rem">
+            <div class="card-body">
+                <h5 class="card-title"> @Html.DisplayFor(modelItem => item.titulo) </h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.descricao)</p>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.corpo)</p>
+                
+
+
+            </div>
+
+            
+
+
+
+    </div>
+
+
+        <div class="col-md-15">
+            <a class="btn btn-primary" href='@Html.ActionLink("Create New", "Create")'>Detalhes</a>
+            <a class="btn btn-primary" href=' @Html.ActionLink("Edit", "Edit", new { id = item.id_post })'>Detalhes</a>
+            <a class="btn btn-primary" href='@Html.ActionLink("Details","Details", new { id = item.id_post })'>Detalhes</a>
+        </div>
+
+
+</div>
+    </div>
+
+
+    }
+
+
