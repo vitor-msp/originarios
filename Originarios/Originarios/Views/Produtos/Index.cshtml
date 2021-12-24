@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Originarios.Models.Postagem>
+
+@{
+    ViewBag.Title = "Produtos";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.corpo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nm_img1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vb_img1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nm_img2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vb_img2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nm_img3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vb_img3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nm_img4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vb_img4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario1.nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.corpo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nm_img1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vb_img1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nm_img2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vb_img2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nm_img3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vb_img3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nm_img4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vb_img4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario1.nome)
+        </td>
+        @*<td>
+            @Html.ActionLink("Details", "Details", new { id=item.id_post })
+        </td>*@
+    </tr>
+}
+
+</table>

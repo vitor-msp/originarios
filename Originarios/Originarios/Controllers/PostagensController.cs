@@ -12,81 +12,94 @@ using Microsoft.AspNet.Identity;
 
 namespace Originarios.Controllers
 {
+    [Authorize]
     public class PostagensController : Controller
     {
         private OriginariosEntities db = new OriginariosEntities();
 
-        // GET: Postagens
-        public ActionResult Index()
+        private Usuario BuscaUsuarioLogado()
         {
-            var postagem = db.Postagem.Include(p => p.Usuario1);
-            return View(postagem.ToList());
+            string email = User.Identity.GetUserName();
+            return db.Usuario.SingleOrDefault(u => u.email.Equals(email));
+        }
+
+        // rota: Meus_Produtos
+        // lista os produtos do usuário logado
+        public ActionResult Index(char? msg = null)
+        {
+            Usuario usuarioLogado = BuscaUsuarioLogado();
+            if (usuarioLogado == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.Msg = msg == 'c' ? "Produto postado com sucesso!!" 
+                        : msg == 'e' ? "Produto atualizado com sucesso!!"
+                        : msg == 'd' ? "Produto deletado com sucesso!!"
+                        : null;
+            IQueryable<Postagem> postagens = db.Postagem.Where(p => p.usuario == usuarioLogado.id_usu);
+            return View(postagens.ToList());
         }
 
         // GET: Postagens/Details/5
-        public ActionResult Details(int? id)
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Postagem postagem = db.Postagem.Find(id);
+        //    if (postagem == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(postagem);
+        //}
+
+        // rota: Criar_Produto
+        // chama view para criação de produto
+        public ActionResult Create()
         {
-            if (id == null)
+            Usuario usuarioLogado = BuscaUsuarioLogado();
+            if (usuarioLogado == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Postagem postagem = db.Postagem.Find(id);
-            if (postagem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(postagem);
-        }
-
-        // GET: Postagens/Create
-        public ActionResult Create()
-        {
-            ViewBag.usuario = new SelectList(db.Usuario, "id_usu", "nome");
+            ViewBag.usuario = usuarioLogado.id_usu;
             return View();
         }
 
-        // POST: Postagens/Create
-        // Para proteger-se contra ataques de excesso de postagem, ative as propriedades específicas às quais deseja se associar. 
-        // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST da view Create
+        // cria produto no banco de dados
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_post,usuario,titulo,descricao,corpo,nm_img1,vb_img1,nm_img2,vb_img2,nm_img3,vb_img3,nm_img4,vb_img4")] Postagem postagem, HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4)
+        public ActionResult Create
+        (
+            [Bind(Include = "id_post,usuario,titulo,descricao,corpo,nm_img1,vb_img1,nm_img2,vb_img2,nm_img3,vb_img3,nm_img4,vb_img4")] Postagem postagem, 
+            HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4
+        )
         {
             if (ModelState.IsValid)
             {
-                /////////////////////////////////////////////////////////////
-                if (img1.FileName != null)
-                {
+                List<HttpPostedFileBase> imagens = new List<HttpPostedFileBase>();
+                imagens.Add(img1);
+                imagens.Add(img2);
+                imagens.Add(img3);
+                imagens.Add(img4);
+                postagem = AdicionaImgNaPostagem(postagem, imagens);
 
-                    MemoryStream target = new MemoryStream();
-                    img1.InputStream.CopyTo(target);
-                    byte[] data = target.ToArray();
-                    postagem.vb_img1 = data;
-
-                }
-
-                /////////////////////////////////////////////////////////////
                 db.Postagem.Add(postagem);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { msg = 'c' });
             }
-
-            ViewBag.usuario = new SelectList(db.Usuario, "id_usu", "nome", postagem.usuario);
             return View(postagem);
         }
 
-        /////////////////////////////////////////////////////////////
-        public FileContentResult getImg1(int id)
-        {
-            byte[] array = db.Postagem.Find(id).vb_img1;
-            return array != null ? new FileContentResult(array, "image/jpeg") : null;
-        }
-        /////////////////////////////////////////////////////////////
-
-        // GET: Postagens/Edit/5
+        // rota: Editar_Produto
+        // chama view para edição do produto
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            Usuario usuarioLogado = BuscaUsuarioLogado();
+            if (id == null || usuarioLogado == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -95,31 +108,42 @@ namespace Originarios.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.usuario = new SelectList(db.Usuario, "id_usu", "nome", postagem.usuario);
+            ViewBag.usuario = usuarioLogado.id_usu;
             return View(postagem);
         }
 
-        // POST: Postagens/Edit/5
-        // Para proteger-se contra ataques de excesso de postagem, ative as propriedades específicas às quais deseja se associar. 
-        // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST da view Edit
+        // edita produto no banco de dados
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_post,usuario,titulo,descricao,corpo,nm_img1,vb_img1,nm_img2,vb_img2,nm_img3,vb_img3,nm_img4,vb_img4")] Postagem postagem)
+        public ActionResult Edit
+        (
+            [Bind(Include = "id_post,usuario,titulo,descricao,corpo,nm_img1,vb_img1,nm_img2,vb_img2,nm_img3,vb_img3,nm_img4,vb_img4")] Postagem postagem,
+            HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4
+        )
         {
             if (ModelState.IsValid)
             {
+                List<HttpPostedFileBase> imagens = new List<HttpPostedFileBase>();
+                imagens.Add(img1);
+                imagens.Add(img2);
+                imagens.Add(img3);
+                imagens.Add(img4);
+                postagem = AdicionaImgNaPostagem(postagem, imagens);
+
                 db.Entry(postagem).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { msg = 'e' });
             }
-            ViewBag.usuario = new SelectList(db.Usuario, "id_usu", "nome", postagem.usuario);
             return View(postagem);
         }
 
-        // GET: Postagens/Delete/5
+        // rota: Deletar_Produto
+        // chama view para remoção do produto
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            Usuario usuarioLogado = BuscaUsuarioLogado();
+            if (id == null || usuarioLogado == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -131,15 +155,79 @@ namespace Originarios.Controllers
             return View(postagem);
         }
 
-        // POST: Postagens/Delete/5
+        // POST da view Delete
+        // remove produto no banco de dados
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
+            Usuario usuarioLogado = BuscaUsuarioLogado();
+            if (id == null || usuarioLogado == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Postagem postagem = db.Postagem.Find(id);
+            if (postagem == null)
+            {
+                return HttpNotFound();
+            }
             db.Postagem.Remove(postagem);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { msg = 'd' });
+        }
+
+        // método que adiciona imagens ao objeto 'postagem'
+        private Postagem AdicionaImgNaPostagem (Postagem postagem, List<HttpPostedFileBase> imagens)
+        {
+            List<byte[]> vbImagens = new List<byte[]>();
+            
+            foreach(HttpPostedFileBase imagem in imagens)
+            {
+                if (imagem != null)
+                {
+                    MemoryStream target = new MemoryStream();
+                    imagem.InputStream.CopyTo(target);
+                    byte[] vbImagem = target.ToArray();
+                    vbImagens.Add(vbImagem);
+                }
+                else
+                {
+                    vbImagens.Add(null);
+                }
+            }
+
+            postagem.vb_img1 = vbImagens[0];
+            postagem.vb_img2 = vbImagens[1];
+            postagem.vb_img3 = vbImagens[2];
+            postagem.vb_img4 = vbImagens[3];
+            return postagem;
+        }
+
+        // método que busca, renderiza e retorna imagem
+        public FileContentResult ObterImgNaView(int id, int img)
+        {
+            Postagem postagem = db.Postagem.Find(id);
+            byte[] vbImg = null;
+
+            switch (img)
+            {
+                case 1:
+                    vbImg = postagem.vb_img1;
+                    break;
+                case 2:
+                    vbImg = postagem.vb_img2;
+                    break;
+                case 3:
+                    vbImg = postagem.vb_img3;
+                    break;
+                case 4:
+                    vbImg = postagem.vb_img4;
+                    break;
+                default:
+                    break;
+            }
+
+            return vbImg != null ? new FileContentResult(vbImg, "image/jpeg") : null;
         }
 
         protected override void Dispose(bool disposing)

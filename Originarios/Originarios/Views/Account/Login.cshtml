@@ -44,16 +44,7 @@
                 <p>
                     @Html.ActionLink("Registre-se como um novo usuário", "Register")
                 </p>
-                @* Habilite quando a confirmação da conta estiver ativada para a funcionalidade de redefinição de senha
-                    <p>
-                        @Html.ActionLink("Esqueceu sua senha?", "ForgotPassword")
-                    </p>*@
             }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>

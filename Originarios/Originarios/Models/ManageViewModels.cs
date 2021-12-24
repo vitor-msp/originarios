@@ -8,16 +8,7 @@ namespace Originarios.Models
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }
-        public IList<UserLoginInfo> Logins { get; set; }
-        public string PhoneNumber { get; set; }
-        public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
-    }
-
-    public class ManageLoginsViewModel
-    {
-        public IList<UserLoginInfo> CurrentLogins { get; set; }
-        public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
 
     public class FactorViewModel
@@ -56,31 +47,5 @@ namespace Originarios.Models
         [Display(Name = "Confirmar nova senha")]
         [Compare("NewPassword", ErrorMessage = "A nova senha e a senha de confirmação não correspondem.")]
         public string ConfirmPassword { get; set; }
-    }
-
-    public class AddPhoneNumberViewModel
-    {
-        [Required]
-        [Phone]
-        [Display(Name = "Número de telefone")]
-        public string Number { get; set; }
-    }
-
-    public class VerifyPhoneNumberViewModel
-    {
-        [Required]
-        [Display(Name = "Código")]
-        public string Code { get; set; }
-
-        [Required]
-        [Phone]
-        [Display(Name = "Número de telefone")]
-        public string PhoneNumber { get; set; }
-    }
-
-    public class ConfigureTwoFactorViewModel
-    {
-        public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
 }
