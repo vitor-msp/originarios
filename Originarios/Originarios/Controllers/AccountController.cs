@@ -121,7 +121,12 @@ namespace Originarios.Controllers
 
                             Usuario usuario = new Usuario();
                             usuario.nome = model.usuario.nome;
+                            usuario.cpf = model.usuario.cpf;
                             usuario.dt_nasc = model.usuario.dt_nasc;
+                            usuario.cidade = model.usuario.cidade;
+                            usuario.estado = model.usuario.estado;
+                            usuario.ddd = model.usuario.ddd;
+                            usuario.whatsapp = model.usuario.whatsapp;
                             usuario.email = model.registro.Email;
                             db.Usuario.Add(usuario);
                             db.SaveChanges();

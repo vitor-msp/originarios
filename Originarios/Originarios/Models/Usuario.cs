@@ -24,6 +24,11 @@ namespace Originarios.Models
         public string nome { get; set; }
         public System.DateTime dt_nasc { get; set; }
         public string email { get; set; }
+        public string cpf { get; set; }
+        public string cidade { get; set; }
+        public string estado { get; set; }
+        public string ddd { get; set; }
+        public string whatsapp { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Postagem> Postagem { get; set; }

@@ -23,25 +23,46 @@
             @ViewBag.usuario.nome
         </dd>
 
-        @*<dt>
-            RG:
-        </dt>
-        <dd>
-            @ViewBag.cliente.rg
-        </dd>*@
-
-        @*<dt>
+        <dt>
             CPF:
         </dt>
         <dd>
-            @Convert.ToUInt64(ViewBag.cliente.cpf).ToString(@"000\.000\.000\-00")
-        </dd>*@
+            @ViewBag.usuario.cpf
+        </dd>
 
         <dt>
             Data de nascimento:
         </dt>
         <dd>
             @ViewBag.usuario.dt_nasc.ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt>
+            Cidade:
+        </dt>
+        <dd>
+            @ViewBag.usuario.cidade
+        </dd>
+
+        <dt>
+            UF:
+        </dt>
+        <dd>
+            @ViewBag.usuario.estado
+        </dd>
+
+        <dt>
+            DDD:
+        </dt>
+        <dd>
+            @ViewBag.usuario.ddd
+        </dd>
+
+        <dt>
+            WhatsApp:
+        </dt>
+        <dd>
+            @ViewBag.usuario.whatsapp
         </dd>
 
         <dt>
