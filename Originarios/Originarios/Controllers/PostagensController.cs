@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Originarios.Models;
 using System.IO;
 using Microsoft.AspNet.Identity;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Originarios.Controllers
 {
@@ -40,21 +42,6 @@ namespace Originarios.Controllers
             return View(postagens.ToList());
         }
 
-        // GET: Postagens/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Postagem postagem = db.Postagem.Find(id);
-        //    if (postagem == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(postagem);
-        //}
-
         // rota: Criar_Produto
         // chama view para criação de produto
         public ActionResult Create()
@@ -74,18 +61,16 @@ namespace Originarios.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create
         (
-            [Bind(Include = "id_post,usuario,titulo,descricao,corpo,nm_img1,vb_img1,nm_img2,vb_img2,nm_img3,vb_img3,nm_img4,vb_img4")] Postagem postagem, 
-            HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4
+            [Bind(Include = "id_post,usuario,titulo,descricao,corpo,valor,nm_img1,vb_img1,nm_img2,vb_img2,nm_img3,vb_img3,nm_img4,vb_img4")] Postagem postagem,
+            string base64_img1, string base64_img2, string base64_img3, string base64_img4
         )
         {
             if (ModelState.IsValid)
             {
-                List<HttpPostedFileBase> imagens = new List<HttpPostedFileBase>();
-                imagens.Add(img1);
-                imagens.Add(img2);
-                imagens.Add(img3);
-                imagens.Add(img4);
-                postagem = AdicionaImgNaPostagem(postagem, imagens);
+                postagem.vb_img1 = string.IsNullOrEmpty(base64_img1) ? null : Convert.FromBase64String(base64_img1.Substring(22));
+                postagem.vb_img2 = string.IsNullOrEmpty(base64_img2) ? null : Convert.FromBase64String(base64_img2.Substring(22));
+                postagem.vb_img3 = string.IsNullOrEmpty(base64_img3) ? null : Convert.FromBase64String(base64_img3.Substring(22));
+                postagem.vb_img4 = string.IsNullOrEmpty(base64_img4) ? null : Convert.FromBase64String(base64_img4.Substring(22));
 
                 db.Postagem.Add(postagem);
                 db.SaveChanges();
@@ -118,19 +103,17 @@ namespace Originarios.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit
         (
-            [Bind(Include = "id_post,usuario,titulo,descricao,corpo,nm_img1,vb_img1,nm_img2,vb_img2,nm_img3,vb_img3,nm_img4,vb_img4")] Postagem postagem,
-            HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4
+            [Bind(Include = "id_post,usuario,titulo,descricao,corpo,valor,nm_img1,vb_img1,nm_img2,vb_img2,nm_img3,vb_img3,nm_img4,vb_img4")] Postagem postagem,
+            string base64_img1, string base64_img2, string base64_img3, string base64_img4
         )
         {
             if (ModelState.IsValid)
             {
-                List<HttpPostedFileBase> imagens = new List<HttpPostedFileBase>();
-                imagens.Add(img1);
-                imagens.Add(img2);
-                imagens.Add(img3);
-                imagens.Add(img4);
-                postagem = AdicionaImgNaPostagem(postagem, imagens);
-
+                postagem.vb_img1 = string.IsNullOrEmpty(base64_img1) ? null : Convert.FromBase64String(base64_img1.Substring(22));
+                postagem.vb_img2 = string.IsNullOrEmpty(base64_img2) ? null : Convert.FromBase64String(base64_img2.Substring(22));
+                postagem.vb_img3 = string.IsNullOrEmpty(base64_img3) ? null : Convert.FromBase64String(base64_img3.Substring(22));
+                postagem.vb_img4 = string.IsNullOrEmpty(base64_img4) ? null : Convert.FromBase64String(base64_img4.Substring(22));
+                
                 db.Entry(postagem).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", new { msg = 'e' });
@@ -138,9 +121,9 @@ namespace Originarios.Controllers
             return View(postagem);
         }
 
-        // rota: Deletar_Produto
-        // chama view para remoção do produto
-        public ActionResult Delete(int? id)
+        // rota: Ver_Produto
+        // chama view para detalhes do produto
+        public ActionResult Details(int? id)
         {
             Usuario usuarioLogado = BuscaUsuarioLogado();
             if (id == null || usuarioLogado == null)
@@ -155,11 +138,11 @@ namespace Originarios.Controllers
             return View(postagem);
         }
 
-        // POST da view Delete
+        // POST do botão delete da view Details
         // remove produto no banco de dados
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? id)
+        public ActionResult Delete(int? id)
         {
             Usuario usuarioLogado = BuscaUsuarioLogado();
             if (id == null || usuarioLogado == null)
@@ -174,33 +157,6 @@ namespace Originarios.Controllers
             db.Postagem.Remove(postagem);
             db.SaveChanges();
             return RedirectToAction("Index", new { msg = 'd' });
-        }
-
-        // método que adiciona imagens ao objeto 'postagem'
-        private Postagem AdicionaImgNaPostagem (Postagem postagem, List<HttpPostedFileBase> imagens)
-        {
-            List<byte[]> vbImagens = new List<byte[]>();
-            
-            foreach(HttpPostedFileBase imagem in imagens)
-            {
-                if (imagem != null)
-                {
-                    MemoryStream target = new MemoryStream();
-                    imagem.InputStream.CopyTo(target);
-                    byte[] vbImagem = target.ToArray();
-                    vbImagens.Add(vbImagem);
-                }
-                else
-                {
-                    vbImagens.Add(null);
-                }
-            }
-
-            postagem.vb_img1 = vbImagens[0];
-            postagem.vb_img2 = vbImagens[1];
-            postagem.vb_img3 = vbImagens[2];
-            postagem.vb_img4 = vbImagens[3];
-            return postagem;
         }
 
         // método que busca, renderiza e retorna imagem

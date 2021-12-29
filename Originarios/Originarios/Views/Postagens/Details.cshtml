@@ -47,8 +47,7 @@
         </dt>
 
         <dd>
-            <img src="@Url.Action("getImg1", "Postagens", new { id = Model.id_post })" alt="imagem1" />
-            @*@Html.DisplayFor(model => model.vb_img1)*@
+            <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 1 })" alt="imagem1" />
         </dd>
 
         <dt>
@@ -64,7 +63,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.vb_img2)
+            <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 2 })" alt="imagem2" />
         </dd>
 
         <dt>
@@ -80,7 +79,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.vb_img3)
+            <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 3 })" alt="imagem3" />
         </dd>
 
         <dt>
@@ -96,39 +95,20 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.vb_img4)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario1.nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuario1.nome)
+            <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 4 })" alt="imagem4" />
         </dd>
 
     </dl>
-</div>
 
-@*Parte implementada por Amanda e carla*@
-@*@foreach (var item in Model)
-{
+    @using (Html.BeginForm("Delete", "Postagens", new { id = Model.id_post }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-
-    <div class="card" style="width: 18rem">
-        <img src="@Url.Action("getImg1", "Postagens", new { id = item.id_post})" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title"> @Html.DisplayFor(modelItem => item.titulo) </h5>
-            <p class="card-text">@Html.DisplayFor(modelItem => item.descricao)</p>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Editar", "Edit", "Postagens", routeValues: new { id = Model.id_post }, htmlAttributes: new { @class = "btn btn-primary" })
+            @Html.ActionLink("Back to List", "Index")
         </div>
+    }
 
-
-    </div>
-}*@
-@*Parte implementada por Amanda e carla*@
-
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_post }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

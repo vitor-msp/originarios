@@ -55,55 +55,15 @@
         <th></th>
     </tr>
 
-@*@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.corpo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nm_img1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vb_img1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nm_img2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vb_img2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nm_img3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vb_img3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nm_img4)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vb_img4)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_post }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_post }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_post })
-        </td>
-    </tr>
-}*@
-
 @foreach (var item in Model)
 {
     <div class="">
         <div class="col-md-4">
             <div class="card justify-content-center" style="">
-                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 1 })" class="card-img-top" alt="..." style="width: 26rem" height="330rem">
+                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 1 })" class="card-img-top" alt="..." style="width: 26rem" height="auto">
+                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 2 })" class="card-img-top" alt="..." style="width: 26rem" height="auto">
+                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 3 })" class="card-img-top" alt="..." style="width: 26rem" height="auto">
+                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 4 })" class="card-img-top" alt="..." style="width: 26rem" height="auto">
                 <div class="card-body">
                     <h5 class="card-title"> @Html.DisplayFor(modelItem => item.titulo) </h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.descricao)</p>
@@ -113,8 +73,6 @@
 
             <div class="col-md-15">
                 @Html.ActionLink("Detalhes", "Details", "Postagens", routeValues: new { id = item.id_post }, htmlAttributes: new { @class = "btn btn-primary" })
-                @Html.ActionLink("Editar", "Edit", "Postagens", routeValues: new { id = item.id_post }, htmlAttributes: new { @class = "btn btn-primary" })
-                @Html.ActionLink("Deletar", "Delete", "Postagens", routeValues: new { id = item.id_post }, htmlAttributes: new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>

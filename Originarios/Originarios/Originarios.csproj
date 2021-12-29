@@ -285,7 +285,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Postagens\Create.cshtml" />
-    <Content Include="Views\Postagens\Delete.cshtml" />
     <Content Include="Views\Postagens\Details.cshtml" />
     <Content Include="Views\Postagens\Edit.cshtml" />
     <Content Include="Views\Postagens\Index.cshtml" />

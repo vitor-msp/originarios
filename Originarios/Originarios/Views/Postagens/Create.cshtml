@@ -1,16 +1,16 @@
 ﻿@model Originarios.Models.Postagem
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Criar Produto";
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "Postagens", FormMethod.Post, new { enctype = "multipart/form-data" } )) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Postagem</h4>
         <hr />
@@ -51,6 +51,9 @@
             </div>
         </div>
 
+        @* ------------------------------------------------------------------------- *@
+        <hr/>
+
         <div class="form-group">
             @Html.LabelFor(model => model.nm_img1, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -59,14 +62,26 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-12 col-sm-8">
+                <img id="preCrop1" style="display: block; max-width: 100%;" src="">
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="posCrop1" style="overflow: hidden; width: 200px; height: 200px;"></div>
+                <button type="button" id="btnCanvas1" class="btn btn-danger">Salvar Imagem</button>
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.base64_img1, new { id = "hiddenCrop1" })
+
         <div class="form-group">
             @Html.LabelFor(model => model.vb_img1, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.vb_img1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.vb_img1, "", new { @class = "text-danger" })
-                <input type="file" id="img1" name="img1">
+                <input type="file" accept="image/*" onchange="carregarImg1(event)">
             </div>
         </div>
+
+        @* ------------------------------------------------------------------------- *@
+        <hr/>
 
         <div class="form-group">
             @Html.LabelFor(model => model.nm_img2, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -76,14 +91,26 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-12 col-sm-8">
+                <img id="preCrop2" style="display: block; max-width: 100%;" src="">
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="posCrop2" style="overflow: hidden; width: 200px; height: 200px;"></div>
+                <button type="button" id="btnCanvas2" class="btn btn-danger">Salvar Imagem</button>
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.base64_img2, new { id = "hiddenCrop2" })
+
         <div class="form-group">
             @Html.LabelFor(model => model.vb_img2, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.vb_img2, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.vb_img2, "", new { @class = "text-danger" })
-                <input type="file" id="img2" name="img2">
+                <input type="file" accept="image/*" onchange="carregarImg2(event)">
             </div>
         </div>
+
+        @* ------------------------------------------------------------------------- *@
+        <hr/>
 
         <div class="form-group">
             @Html.LabelFor(model => model.nm_img3, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -93,14 +120,26 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-12 col-sm-8">
+                <img id="preCrop3" style="display: block; max-width: 100%;" src="">
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="posCrop3" style="overflow: hidden; width: 200px; height: 200px;"></div>
+                <button type="button" id="btnCanvas3" class="btn btn-danger">Salvar Imagem</button>
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.base64_img3, new { id = "hiddenCrop3" })
+
         <div class="form-group">
             @Html.LabelFor(model => model.vb_img3, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.vb_img3, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.vb_img3, "", new { @class = "text-danger" })
-                <input type="file" id="img3" name="img3">
+                <input type="file" accept="image/*" onchange="carregarImg3(event)">
             </div>
         </div>
+
+        @* ------------------------------------------------------------------------- *@
+        <hr/>
 
         <div class="form-group">
             @Html.LabelFor(model => model.nm_img4, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -110,18 +149,30 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-12 col-sm-8">
+                <img id="preCrop4" style="display: block; max-width: 100%;" src="">
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="posCrop4" style="overflow: hidden; width: 200px; height: 200px;"></div>
+                <button type="button" id="btnCanvas4" class="btn btn-danger">Salvar Imagem</button>
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.base64_img4, new { id = "hiddenCrop4" })
+
         <div class="form-group">
             @Html.LabelFor(model => model.vb_img4, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.vb_img4, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.vb_img4, "", new { @class = "text-danger" })
-                <input type="file" id="img4" name="img4">
+                <input type="file" accept="image/*" onchange="carregarImg4(event)">
             </div>
         </div>
 
+        @* ------------------------------------------------------------------------- *@
+        <hr/>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input id="submit" type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

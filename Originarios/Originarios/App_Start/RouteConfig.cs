@@ -80,9 +80,9 @@ namespace Originarios
             );
 
             routes.MapRoute(
-                name: "Deletar_Produto",
-                url: "Deletar_Produto",
-                defaults: new { controller = "Postagens", action = "Delete" }
+                name: "Ver_Produto",
+                url: "Ver_Produto",
+                defaults: new { controller = "Postagens", action = "Details" }
             );
 
             routes.MapRoute(
