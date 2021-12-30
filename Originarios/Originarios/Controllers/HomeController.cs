@@ -15,9 +15,7 @@ namespace Originarios.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contato";
-
-            return View();
+            return RedirectToAction("Create", "Contatos");
         }
     }
 }

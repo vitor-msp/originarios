@@ -22,7 +22,7 @@ namespace Originarios
             routes.MapRoute(
                 name: "Contato",
                 url: "Contato",
-                defaults: new { controller = "Home", action = "Contact" }
+                defaults: new { controller = "Contatos", action = "Create" }
             );
 
             routes.MapRoute(

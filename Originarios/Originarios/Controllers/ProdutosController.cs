@@ -21,19 +21,19 @@ namespace Originarios.Controllers
         }
 
         // GET: Produtos/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Postagem postagem = db.Postagem.Find(id);
-        //    if (postagem == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(postagem);
-        //}
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Postagem postagem = db.Postagem.Find(id);
+            if (postagem == null)
+            {
+                return HttpNotFound();
+            }
+            return View(postagem);
+        }
 
         protected override void Dispose(bool disposing)
         {

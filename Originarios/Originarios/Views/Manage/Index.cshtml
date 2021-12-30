@@ -27,7 +27,7 @@
             CPF:
         </dt>
         <dd>
-            @ViewBag.usuario.cpf
+            @Convert.ToUInt64(ViewBag.usuario.cpf).ToString(@"000\.000\.000\-00")
         </dd>
 
         <dt>
