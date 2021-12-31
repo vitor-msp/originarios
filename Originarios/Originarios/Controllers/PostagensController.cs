@@ -160,6 +160,7 @@ namespace Originarios.Controllers
             return RedirectToAction("Index", new { msg = 'd' });
         }
 
+        [AllowAnonymous]
         // método que busca, renderiza e retorna imagem
         public FileContentResult ObterImgNaView(int id, int img)
         {

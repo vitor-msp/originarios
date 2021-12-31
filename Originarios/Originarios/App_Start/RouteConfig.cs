@@ -32,6 +32,12 @@ namespace Originarios
             );
 
             routes.MapRoute(
+                name: "Produto",
+                url: "Produto",
+                defaults: new { controller = "Produtos", action = "Details" }
+            );
+
+            routes.MapRoute(
                 name: "Criar_Conta",
                 url: "Criar_Conta",
                 defaults: new { controller = "Account", action = "Register" }
