@@ -15,6 +15,38 @@ const formatDtNasc = () => {
 }
 window.addEventListener('load', formatDtNasc);
 
+/********************* Alterar botões de 'salvar imagem' *********************/
+const mudarBotao = (num, foiSalva) => {
+    let btnCanvas = document.getElementById(`btnCanvas${num}`);
+    if (foiSalva) {
+        btnCanvas.className = "btn btn-success";
+        btnCanvas.innerHTML = "Imagem Salva";
+    } else {
+        btnCanvas.className = "btn btn-danger";
+        btnCanvas.innerHTML = "Salvar Imagem";
+    }
+}
+
+/********************* Tratamento pré criação do produto *********************/
+const preSubmit = () => {
+
+    const titulo = document.getElementById('titulo');
+    if (titulo.value.trim() === '') {
+        alert("É necessário preencher um título.")
+        titulo.focus();
+        return;
+    }
+    const descricao = document.getElementById('descricao');
+    if (descricao.value.trim() === '') {
+        alert("É necessário preencher uma descrição.")
+        descricao.focus();
+        return;
+    }
+
+    document.getElementById('formSalvarPost').submit();
+};
+document.getElementById('btnSalvarProduto').addEventListener('click', preSubmit);
+
 /********************* Códigos para cortar imagem *********************/
 ///////////////////// códigos gerais /////////////////////
 let cropper1 = null;
@@ -49,6 +81,7 @@ const carregarImg1 = (event) => {
     reader.onload = () => {
         preCrop1.src = reader.result;
         initCrop1();
+        mudarBotao('1', false);
     }
     reader.readAsDataURL(event.target.files[0]);
 };
@@ -56,6 +89,7 @@ const obterCanvas1 = () => {
     const canvas = cropper1.getCroppedCanvas({ maxWidth: 300, maxHeight: 500 });
     const urlcanvas = canvas.toDataURL('image/png');
     document.getElementById('hiddenCrop1').value = urlcanvas;
+    mudarBotao('1', true);
 }
 document.getElementById('btnCanvas1').addEventListener('click', obterCanvas1);
 
@@ -75,6 +109,7 @@ const carregarImg2 = (event) => {
     reader.onload = () => {
         preCrop2.src = reader.result;
         initCrop2();
+        mudarBotao('2', false);
     }
     reader.readAsDataURL(event.target.files[0]);
 };
@@ -82,6 +117,7 @@ const obterCanvas2 = () => {
     const canvas = cropper2.getCroppedCanvas({ maxWidth: 300, maxHeight: 500 });
     const urlcanvas = canvas.toDataURL('image/png');
     document.getElementById('hiddenCrop2').value = urlcanvas;
+    mudarBotao('2', true);
 }
 document.getElementById('btnCanvas2').addEventListener('click', obterCanvas2);
 
@@ -102,6 +138,7 @@ const carregarImg3 = (event) => {
     reader.onload = () => {
         preCrop3.src = reader.result;
         initCrop3();
+        mudarBotao('3', false);
     }
     reader.readAsDataURL(event.target.files[0]);
 };
@@ -109,6 +146,7 @@ const obterCanvas3 = () => {
     const canvas = cropper3.getCroppedCanvas({ maxWidth: 300, maxHeight: 500 });
     const urlcanvas = canvas.toDataURL('image/png');
     document.getElementById('hiddenCrop3').value = urlcanvas;
+    mudarBotao('3', true);
 }
 document.getElementById('btnCanvas3').addEventListener('click', obterCanvas3);
 
@@ -129,6 +167,7 @@ const carregarImg4 = (event) => {
     reader.onload = () => {
         preCrop4.src = reader.result;
         initCrop4();
+        mudarBotao('4', false);
     }
     reader.readAsDataURL(event.target.files[0]);
 };
@@ -136,5 +175,6 @@ const obterCanvas4 = () => {
     const canvas = cropper4.getCroppedCanvas({ maxWidth: 300, maxHeight: 500 });
     const urlcanvas = canvas.toDataURL('image/png');
     document.getElementById('hiddenCrop4').value = urlcanvas;
+    mudarBotao('4', true);
 }
 document.getElementById('btnCanvas4').addEventListener('click', obterCanvas4);

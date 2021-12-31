@@ -94,6 +94,7 @@ namespace Originarios.Controllers
                 return HttpNotFound();
             }
             ViewBag.usuario = usuarioLogado.id_usu;
+            ViewBag.valor = postagem.valor.ToString().Split(',')[0];
             return View(postagem);
         }
 
