@@ -178,10 +178,10 @@
     @*-------------------------- Botões --------------------------*@
     <div class="row">
         <div class="col-6 px-2 d-flex justify-content-end">
-            @Html.ActionLink("Voltar", "Details", "Postagens", routeValues: new { id = Model.id_post } , htmlAttributes: new { @class = "btn btn-lg btn-danger" })
+            @Html.ActionLink("Voltar", "Details", "Postagens", routeValues: new { id = Model.id_post } , htmlAttributes: new { @class = "btn btn-light" })
         </div>
         <div class="col-6 px-2">
-            <input type="button" id="btnSalvarProduto" value="Salvar" class="btn btn-lg btn-primary" />
+            <input type="button" id="btnSalvarProduto" value="Salvar" class="btn btn-success" />
         </div>
     </div>
 }

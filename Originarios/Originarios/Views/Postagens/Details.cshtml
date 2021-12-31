@@ -1,122 +1,118 @@
 ﻿@model Originarios.Models.Postagem
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes do Produto";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
-<div>
-    <h4>Postagem</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.titulo)
-        </dt>
+<hr />
+@*-------------------------- Inputs texto --------------------------*@
+<div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.titulo)
-        </dd>
+    <div class="form-group col-12 col-sm-9 pb-4">
+        <span><b>Título:</b></span>
+        <div class="col-12 col-sm-11">
+            <span>@Html.DisplayFor(model => model.titulo)</span>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descricao)
-        </dt>
+    <div class="form-group col-12 col-sm-3 pb-4">
+        <span><b>Valor:</b></span>
+        <div class="col-6 col-sm-12">
+            <span>@Html.DisplayFor(model => model.valor)</span>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.descricao)
-        </dd>
+    <div class="form-group col-12">
+        <span><b>Descrição:</b></span>
+        <div class="col-12">
+            <span class="text-break">@Html.DisplayFor(model => model.descricao)</span>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.corpo)
-        </dt>
+</div>
+<hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.corpo)
-        </dd>
+@*-------------------------- Imagens --------------------------*@
+<div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.valor)
-        </dt>
+    @*----------- Imagem 1 -----------*@
+    <div class="col-12 col-sm-6 p-2 borda-sec-img">
 
-        <dd>
-            @Html.DisplayFor(model => model.valor)
-        </dd>
+        <div class="row mb-2 text-center">
+            <span><b>@Html.DisplayFor(model => model.nm_img1)</b></span>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nm_img1)
-        </dt>
+        <div class="row mb-2">
+            <img class="img-fluid" src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 1 })">
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.nm_img1)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.vb_img1)
-        </dt>
+    @*----------- Imagem 2 -----------*@
+    <div class="col-12 col-sm-6 p-2 borda-sec-img">
 
-        <dd>
-            <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 1 })" alt="imagem1" />
-        </dd>
+        <div class="row mb-2 text-center">
+            <span><b>@Html.DisplayFor(model => model.nm_img2)</b></span>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nm_img2)
-        </dt>
+        <div class="row mb-2">
+            <img class="img-fluid" src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 2 })">
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.nm_img2)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.vb_img2)
-        </dt>
+    @*----------- Imagem 3 -----------*@
+    <div class="col-12 col-sm-6 p-2 borda-sec-img">
 
-        <dd>
-            <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 2 })" alt="imagem2" />
-        </dd>
+        <div class="row mb-2 text-center">
+            <span><b>@Html.DisplayFor(model => model.nm_img3)</b></span>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nm_img3)
-        </dt>
+        <div class="row mb-2">
+            <img class="img-fluid" src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 3 })">
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.nm_img3)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.vb_img3)
-        </dt>
+    @*----------- Imagem 4 -----------*@
+    <div class="col-12 col-sm-6 p-2 borda-sec-img">
 
-        <dd>
-            <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 3 })" alt="imagem3" />
-        </dd>
+        <div class="row mb-2 text-center">
+            <span><b>@Html.DisplayFor(model => model.nm_img4)</b></span>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nm_img4)
-        </dt>
+        <div class="row mb-2">
+            <img class="img-fluid" src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 4 })">
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.nm_img4)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.vb_img4)
-        </dt>
+</div>
 
-        <dd>
-            <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = Model.id_post, img = 4 })" alt="imagem4" />
-        </dd>
+<hr />
+@*-------------------------- Detalhes --------------------------*@
+<div class="row">
+    <span class="px-0"><b>Detalhes:</b></span>
+    <div class="col-12">
+        <span class="text-break">@Html.DisplayFor(model => model.corpo)</span>
+    </div>
+</div>
 
-    </dl>
-
-    @using (Html.BeginForm("Delete", "Postagens", new { id = Model.id_post }, FormMethod.Post))
+<hr />
+@*-------------------------- Botões --------------------------*@
+<div class="row">
+    @using (Html.BeginForm("Delete", "Postagens", new { id = Model.id_post }, FormMethod.Post, htmlAttributes: new { @class = "px-0 d-flex justify-content-between justify-content-sm-center" } ))
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Editar", "Edit", "Postagens", routeValues: new { id = Model.id_post }, htmlAttributes: new { @class = "btn btn-primary" })
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+        @Html.ActionLink("Voltar", "Index", "Postagens", null, htmlAttributes: new { @class = "btn btn-light" })
+        @Html.ActionLink("Editar", "Edit", "Postagens", routeValues: new { id = Model.id_post }, htmlAttributes: new { @class = "btn btn-primary mx-sm-4" })
+        <input type="submit" value="Deletar" class="btn btn-danger" />
     }
-
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
