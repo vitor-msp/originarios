@@ -6,6 +6,11 @@
 
 <h2>@ViewBag.Title</h2>
 
+@if (ViewBag.msg != null)
+{
+    <h5 class="text-success">@ViewBag.msg</h5>
+}
+
 <hr />
 @*-------------------------- Inputs texto --------------------------*@
 <div class="row">
@@ -103,7 +108,7 @@
 <hr />
 @*-------------------------- Botões --------------------------*@
 <div class="row">
-    @using (Html.BeginForm("Delete", "Postagens", new { id = Model.id_post }, FormMethod.Post, htmlAttributes: new { @class = "px-0 d-flex justify-content-between justify-content-sm-center" } ))
+    @using (Html.BeginForm("Delete", "Postagens", new { id = Model.id_post }, FormMethod.Post, htmlAttributes: new { @class = "px-0 d-flex justify-content-between justify-content-sm-center" }))
     {
         @Html.AntiForgeryToken()
 

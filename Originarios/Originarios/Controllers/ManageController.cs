@@ -54,14 +54,14 @@ namespace Originarios.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message, bool? edited = false)
+        public async Task<ActionResult> Index(ManageMessageId? message, bool? editado = false)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Sua senha foi alterada."
                 : message == ManageMessageId.SetPasswordSuccess ? "Sua senha foi definida."
                 : message == ManageMessageId.Error ? "Ocorreu um erro."
                 : "";
-            ViewBag.MsgEdit = edited;
+            ViewBag.msg = editado == true ? "Dados atualizados com sucesso!!" : null;
 
             string email = User.Identity.GetUserName();
             Usuario usuario = db.Usuario.SingleOrDefault(c => c.email.Equals(email));
@@ -94,13 +94,12 @@ namespace Originarios.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id_usu,nome,cpf,dt_nasc,email,cidade,estado,ddd,whatsapp")] Usuario usuario)
         {
-            //usuario.cpf = usuario.cpf.Replace(".", "").Replace("-", "");
             if (ModelState.IsValid)
             {
                 db.Entry(usuario).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.StatusMessage = "Dados atualizados com sucesso!";
-                return RedirectToAction("Index", new { edited = true });
+                return RedirectToAction("Index", new { editado = true });
             }
             return View(usuario);
         }

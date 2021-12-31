@@ -6,12 +6,16 @@
 
 <h2>@ViewBag.Title</h2>
 
-@if (ViewBag.MsgEdit)
+@if (ViewBag.msg != null)
 {
-    <p class="text-success">Dados atualizados com sucesso!</p>
+    <h5 class="text-success">@ViewBag.msg</h5>
 }
 
-<p class="text-success">@ViewBag.StatusMessage</p>
+@if (!string.IsNullOrEmpty(ViewBag.StatusMessage))
+{
+    <h5 class="text-success">@ViewBag.StatusMessage</h5>
+}
+
 <div>
     <h4>Alterar as configurações da minha conta</h4>
     <hr />

@@ -34,8 +34,7 @@ namespace Originarios.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Msg = msg == 'c' ? "Produto postado com sucesso!!" 
-                        : msg == 'e' ? "Produto atualizado com sucesso!!"
+            ViewBag.msg = msg == 'c' ? "Produto postado com sucesso!!" 
                         : msg == 'd' ? "Produto deletado com sucesso!!"
                         : null;
             IQueryable<Postagem> postagens = db.Postagem.Where(p => p.usuario == usuarioLogado.id_usu);
@@ -117,14 +116,14 @@ namespace Originarios.Controllers
                 
                 db.Entry(postagem).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { msg = 'e' });
+                return RedirectToAction("Details", new { id = postagem.id_post, editado = true });
             }
             return View(postagem);
         }
 
         // rota: Ver_Produto
-        // chama view para detalhes do produto
-        public ActionResult Details(int? id)
+        // chama view para detalhes do produto : msg == 'e' ? "Produto atualizado com sucesso!!"
+        public ActionResult Details(int? id, bool? editado = false)
         {
             Usuario usuarioLogado = BuscaUsuarioLogado();
             if (id == null || usuarioLogado == null)
@@ -136,6 +135,8 @@ namespace Originarios.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.msg = editado == true ? "Produto editado com sucesso!!" : null;
             return View(postagem);
         }
 
