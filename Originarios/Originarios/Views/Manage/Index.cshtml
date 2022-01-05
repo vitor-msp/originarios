@@ -1,10 +1,5 @@
 ﻿@model Originarios.Models.IndexViewModel
-
-@{
-    ViewBag.Title = "Minha Conta";
-}
-
-<h2>@ViewBag.Title</h2>
+@{ ViewBag.Title = "Meus Dados"; }
 
 @if (ViewBag.msg != null)
 {
@@ -16,84 +11,75 @@
     <h5 class="text-success">@ViewBag.StatusMessage</h5>
 }
 
-<div>
-    <h4>Alterar as configurações da minha conta</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Nome:
-        </dt>
-        <dd>
-            @ViewBag.usuario.nome
-        </dd>
+<div class="container-fluid px-0 pb-5">
+    <div class="my-5 text-center">
+        <h1 class="display-4 text-white text-uppercase py-3">Meus Dados</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg mb-2 mx-auto w-100 px-0">
+            <div class="bg-transparent rounded">
+                <div class="row">
 
-        <dt>
-            CPF:
-        </dt>
-        <dd>
-            @Convert.ToUInt64(ViewBag.usuario.cpf).ToString(@"000\.000\.000\-00")
-        </dd>
+                    <div class="form-group col-md-5 pb-4">
+                        <label for="form_name">Nome completo:</label><br />
+                        <span><strong>@ViewBag.usuario.nome</strong></span>
+                    </div>
 
-        <dt>
-            Data de nascimento:
-        </dt>
-        <dd>
-            @ViewBag.usuario.dt_nasc.ToString("dd/MM/yyyy")
-        </dd>
+                    <div class="form-group col-md-3 pb-4">
+                        <label for="inputCPF">CPF:</label><br />
+                        <span><strong>@Convert.ToUInt64(ViewBag.usuario.cpf).ToString(@"000\.000\.000\-00")</strong></span>
+                    </div>
 
-        <dt>
-            Cidade:
-        </dt>
-        <dd>
-            @ViewBag.usuario.cidade
-        </dd>
+                    <div class="form-group col-md-4 pb-4">
+                        <label for="inputCPF">Data de Nascimento:</label><br />
+                        <span><strong>@ViewBag.usuario.dt_nasc.ToString("dd/MM/yyyy")</strong></span>
+                    </div>
 
-        <dt>
-            UF:
-        </dt>
-        <dd>
-            @ViewBag.usuario.estado
-        </dd>
+                    <div class="form-group col-md-2 pb-4">
+                        <label for="inputCPF">DDD:</label><br />
+                        <span><strong>@ViewBag.usuario.ddd</strong></span>
+                    </div>
 
-        <dt>
-            DDD:
-        </dt>
-        <dd>
-            @ViewBag.usuario.ddd
-        </dd>
+                    <div class="form-group col-md-4 pb-4">
+                        <label for="inputCPF">WhatsApp:</label><br />
+                        <span><strong>@ViewBag.usuario.whatsapp</strong></span>
+                    </div>
 
-        <dt>
-            WhatsApp:
-        </dt>
-        <dd>
-            @ViewBag.usuario.whatsapp
-        </dd>
+                    <div class="form-group col-md-3 pb-4">
+                        <label for="inputCidade">Cidade:</label><br />
+                        <span><strong>@ViewBag.usuario.cidade</strong></span>
+                    </div>
 
-        <dt>
-            E-mail:
-        </dt>
-        <dd>
-            @ViewBag.usuario.email
-        </dd>
-    </dl>
+                    <div class="form-group col-md-3 pb-4">
+                        <label for="inputEstado">Estado:</label><br />
+                        <span><strong>@ViewBag.usuario.estado</strong></span>
+                    </div>
 
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Senha:</dt>
-        <dd>
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Alterar minha senha", "ChangePassword")
-            }
-        </dd>
-    </dl>
+                    <div class="form-group col-md-5 pb-4">
+                        <label for="form_email">E-mail:</label><br />
+                        <span><strong>@ViewBag.usuario.email</strong></span>
+                    </div>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.ActionLink("Voltar", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
-        </dt>
-        <dd>
-            @Html.ActionLink("Editar", "Edit", "Manage", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
-        </dd>
-    </dl>
+                    <div class="form-group col-md-4 pb-4">
+                        <label for="inputSenha">Senha:</label><br />
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Alterar minha senha", "ChangePassword")
+                        }
+                    </div>
+
+                </div>
+
+                <div class="px-2">
+                    @Html.ActionLink("Voltar", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+                    @Html.ActionLink("Editar Dados", "Edit", "Manage", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<br>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,54 +1,55 @@
 ﻿@using Originarios.Models
 @model LoginViewModel
-@{
-    ViewBag.Title = "Logon";
-}
+@{ ViewBag.Title = "Logon"; }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use uma conta local para fazer o logon.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="container-fluid px-0 pb-5">
+        <div class="my-5 text-center">
+            <h1 class="display-4 text-white text-uppercase py-3">Fazer Login</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg mb-2 mx-auto w-100 px-0">
+                <div class="bg-transparent rounded">
+                    <div class="row">
+
+                        <div class="form-group col-md-7 pb-4">
+                            <label for="email">E-mail:</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Logon" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Registre-se como um novo usuário", "Register")
-                </p>
-            }
-        </section>
-    </div>
-</div>
 
+                        <div class="form-group col-md-7 pb-4">
+                            <label for="senha">Senha:</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "senha" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="px-2 py-4">
+                        @Html.ActionLink("Voltar", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+                        <input type="submit" value="Fazer Login" class="btn btn-primary" />
+                    </div>
+
+                    <p>@Html.ActionLink("Registre-se como um novo usuário", "Register")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
