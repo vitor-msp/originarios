@@ -55,9 +55,12 @@ nav {
         padding-left: 5px;
         padding-right: 5px;
     }
+    .navbar-nav .nav-link {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
 }
 /* ---------- fim nav ---------- */
-
 
 /* ---------- início main ---------- */
 /* ---------- fim main ---------- */
