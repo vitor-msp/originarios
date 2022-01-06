@@ -1,0 +1,54 @@
+﻿@using Originarios.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Logon";
+}
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="container-fluid px-0 pb-5">
+        <div class="my-2 p-2">
+            <h1 class="display-4 text-white text-uppercase py-3">Fazer Login</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg mb-2 mx-auto w-100 px-0">
+                <div class="bg-transparent rounded">
+                    <div class="row">
+
+                        <div class="form-group col-md-7 pb-4">
+                            <label for="email">E-mail:</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-7 pb-4">
+                            <label for="senha">Senha:</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "senha" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="px-2 py-4">
+                        @Html.ActionLink("Voltar", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+                        <input type="submit" value="Fazer Login" class="btn btn-primary" />
+                    </div>
+
+                    <p><a href="@Url.Action("Register")" class="text-white p-2">Registre-se como um novo usuário</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+}
