@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,24 +10,6 @@ using Originarios.Models;
 
 namespace Originarios
 {
-    //public class EmailService : IIdentityMessageService
-    //{
-    //    public Task SendAsync(IdentityMessage message)
-    //    {
-    //        // Conecte seu serviço de email aqui para enviar um email.
-    //        return Task.FromResult(0);
-    //    }
-    //}
-
-    //public class SmsService : IIdentityMessageService
-    //{
-    //    public Task SendAsync(IdentityMessage message)
-    //    {
-    //        // Conecte seu serviço de SMS aqui para enviar uma mensagem de texto.
-    //        return Task.FromResult(0);
-    //    }
-    //}
-
     // Configure o gerenciador de usuários do aplicativo usado nesse aplicativo. O UserManager está definido no ASP.NET Identity e é usado pelo aplicativo.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
@@ -65,19 +43,6 @@ namespace Originarios
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
-            // Registre provedores de autenticação de dois fatores. Este aplicativo usa Telefone e Emails como uma etapa de recebimento de código para verificar o usuário
-            // Você pode gravar seu próprio provedor e conectá-lo aqui.
-            //manager.RegisterTwoFactorProvider("Código de telefone", new PhoneNumberTokenProvider<ApplicationUser>
-            //{
-            //    MessageFormat = "Seu código de segurança é {0}"
-            //});
-            //manager.RegisterTwoFactorProvider("Código de e-mail", new EmailTokenProvider<ApplicationUser>
-            //{
-            //    Subject = "Código de segurança",
-            //    BodyFormat = "Seu código de segurança é {0}"
-            //});
-            //manager.EmailService = new EmailService();
-            //manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

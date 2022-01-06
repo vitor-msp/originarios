@@ -1,6 +1,8 @@
 ﻿@using Originarios.Models
 @model LoginViewModel
-@{ ViewBag.Title = "Logon"; }
+@{ 
+    ViewBag.Title = "Logon";
+}
 
 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -49,7 +51,4 @@
         </div>
     </div>
     <br>
-}
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
