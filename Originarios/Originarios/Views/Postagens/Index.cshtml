@@ -1,80 +1,41 @@
 ﻿@model IEnumerable<Originarios.Models.Postagem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Meus Produtos";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-@if(ViewBag.msg != null)
+@if (ViewBag.msg != null)
 {
     <h5 class="text-success">@ViewBag.msg</h5>
 }
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar novo", "Create", "Postagens", null, htmlAttributes: new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.corpo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nm_img1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vb_img1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nm_img2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vb_img2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nm_img3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vb_img3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nm_img4)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vb_img4)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.valor)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model)
-{
-    <div class="">
-        <div class="col-md-4">
-            <div class="card justify-content-center" style="">
-                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 1 })" class="card-img-top" alt="..." style="width: 26rem" height="auto">
-                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 2 })" class="card-img-top" alt="..." style="width: 26rem" height="auto">
-                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 3 })" class="card-img-top" alt="..." style="width: 26rem" height="auto">
-                <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 4 })" class="card-img-top" alt="..." style="width: 26rem" height="auto">
-                <div class="card-body">
+<div class="container-fluid p-0 d-flex flex-row flex-wrap justify-content-around" style="">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="d-inline-block vertical-align: top text-black mt-4 " style="">
+            <div class="card" style="width: 15rem; height: 35rem;">
+
+                <a href="@Url.Action("Details", "Postagens", new { id = item.id_post })">
+
+                    <img src="@Url.Action("ObterImgNaView", "Postagens", new { id = item.id_post, img = 1 })" class="card-img-top border " alt="..." style=" ">
+                </a>
+
+                <div class="card-body" style="height: 8rem;overflow: auto;">
+                    <br />
                     <h5 class="card-title"> @Html.DisplayFor(modelItem => item.titulo) </h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.descricao)</p>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.corpo)</p>
+                    <h5 class="card-text text-danger" style="">R$ @Html.DisplayFor(modelItem => item.valor)</h5>
+                    <p><a href="@Url.Action("Details", "Postagens",new { id = item.id_post })" class="text-info">Ver mais detalhes</a></p>
                 </div>
-            </div>
 
-            <div class="col-md-15">
-                @Html.ActionLink("Detalhes", "Details", "Postagens", routeValues: new { id = item.id_post }, htmlAttributes: new { @class = "btn btn-primary" })
             </div>
         </div>
-    </div>
-}
-</table>
+    }
+</div>

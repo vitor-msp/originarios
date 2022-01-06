@@ -20,7 +20,7 @@ namespace Originarios.Controllers
             IEnumerable<Postagem> skipedPosts = allPosts.Skip(skip);
             List<Postagem> filteredPosts = new List<Postagem>();
 
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < 8; i++)
             {
                 try
                 {
@@ -30,8 +30,8 @@ namespace Originarios.Controllers
                 }
             }
 
-            ViewBag.pre = skip - 5;
-            ViewBag.pos = skip + 5 >= allPosts.Count ? -1 : skip + 5;
+            ViewBag.pre = skip - 8;
+            ViewBag.pos = skip + 8 >= allPosts.Count ? -1 : skip + 8;
             return View(filteredPosts);
         }
 
