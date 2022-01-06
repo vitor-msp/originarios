@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Originarios.Models;
@@ -9,13 +11,32 @@ namespace Originarios.Controllers
     {
         private OriginariosEntities db = new OriginariosEntities();
 
-        // GET: Produtos, lista os produtos
-        public ActionResult Index()
+        // rota: Produtos
+        // lista os produtos postados por todos os usuários
+        public ActionResult Index(int skip = 0)
         {
-            return View(db.Postagem.ToList());
+            List<Postagem> allPosts = db.Postagem.ToList();
+            allPosts.Reverse();
+            IEnumerable<Postagem> skipedPosts = allPosts.Skip(skip);
+            List<Postagem> filteredPosts = new List<Postagem>();
+
+            for(int i = 0; i < 5; i++)
+            {
+                try
+                {
+                    filteredPosts.Add(skipedPosts.ElementAt(i));
+                }catch(Exception erro){
+                    continue;
+                }
+            }
+
+            ViewBag.pre = skip - 5;
+            ViewBag.pos = skip + 5 >= allPosts.Count ? -1 : skip + 5;
+            return View(filteredPosts);
         }
 
-        // GET: Produtos/Details/5
+        // rota: Produto/5
+        // chama view para detalhes do produto
         public ActionResult Details(int? id)
         {
             if (id == null)

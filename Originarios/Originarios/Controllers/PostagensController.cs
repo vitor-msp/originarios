@@ -117,7 +117,7 @@ namespace Originarios.Controllers
         }
 
         // rota: Ver_Produto
-        // chama view para detalhes do produto : msg == 'e' ? "Produto atualizado com sucesso!!"
+        // chama view para detalhes do produto
         public ActionResult Details(int? id, bool? editado = false)
         {
             Usuario usuarioLogado = BuscaUsuarioLogado();

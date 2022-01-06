@@ -16,6 +16,9 @@ body {
     margin: 0px;
     padding: 0px;
 }
+a[disabled="disabled"] {
+    pointer-events: none;
+}
 /* ---------- fim geral ---------- */
 
 /* ---------- início nav ---------- */
