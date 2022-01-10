@@ -226,6 +226,11 @@
     <Content Include="Images\Carla.png" />
     <Content Include="Images\carrinho.png" />
     <Content Include="Images\carrinho.svg" />
+    <Content Include="Images\carrosel1.png" />
+    <Content Include="Images\carrosel2.png" />
+    <Content Include="Images\carrosel3.png" />
+    <Content Include="Images\carrosel4.png" />
+    <Content Include="Images\carrosel5.png" />
     <Content Include="Images\comunicacao.png" />
     <Content Include="Images\Diego.png" />
     <Content Include="Images\entrar.png" />
@@ -321,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Originarios - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

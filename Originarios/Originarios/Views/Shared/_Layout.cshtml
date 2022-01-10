@@ -76,10 +76,10 @@
                                 </li>
                                 @if (Request.IsAuthenticated)
                                 {
-                                    <li class="nav-item">
-                                        @Html.ActionLink("Meus Produtos", "Index", "Postagens", null, htmlAttributes: new { @class = "nav-link px-4 py-3" })
-                                    </li>
-                                }
+                    <li class="nav-item">
+                        @Html.ActionLink("Meus Produtos", "Index", "Postagens", null, htmlAttributes: new { @class = "nav-link px-4 py-3" })
+                    </li>
+}
                             </ul>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                             <!-------- img1 -------->
                             <div class="carousel-item active">
                                 <img src="~/Images/img1.png" class="img-fluid d-block img1">
-                                <div class="carousel-caption dez_b mb-5">
+                                <div class="carousel-caption dez_b mb-5 d-none d-md-block">
                                     <h1 class="display-2 color_Text1" style="color: #ffc107; text-shadow: 2px 2px 8px black;">Aqui você encontra</h1>
                                     <h3>Produtos Indigenas</h3>
                                     <button type="button" class="btn btn-outline-light btn-lg">Promoções</button>
@@ -119,7 +119,7 @@
                             <!-------- img2 -------->
                             <div class="carousel-item">
                                 <img src="~/Images/img2.png" class="img-fluid d-block img1">
-                                <div class="carousel-caption dez_b mb-5">
+                                <div class="carousel-caption dez_b mb-5 d-none d-md-block">
                                     <h1 class="display-2 color_Text1" style="color: #ffc107; text-shadow: 2px 2px 8px black;">Aqui você encontra</h1>
                                     <h3>Produtos Indigenas</h3>
                                     <button type="button" class="btn btn-outline-light btn-lg">Promoções</button>
@@ -129,8 +129,8 @@
                             <!-------- img3 -------->
                             <div class="carousel-item">
                                 <img src="~/Images/img3.png" class="img-fluid d-block img1">
-                                <div class="carousel-caption dez_b mb-5">
-                                    <h1 class="display-2 color_Text1" style="color: #ffc107; text-shadow: 2px 2px 8px black;">Aqui você encontra</h1>
+                                <div class="carousel-caption dez_b mb-5 d-none d-md-block">
+                                    <h1 class="display-2 color_Text1 " style="color: #ffc107; text-shadow: 2px 2px 8px black;">Aqui você encontra</h1>
                                     <h3>Produtos Indigenas</h3>
                                     <button type="button" class="btn btn-outline-light btn-lg">Promoções</button>
                                     <button type="button" class="btn btn-warning btn-lg">Artesanato</button>
@@ -139,7 +139,7 @@
                             <!-------- img4 -------->
                             <div class="carousel-item">
                                 <img src="~/Images/img4.png" class="img-fluid d-block img1">
-                                <div class="carousel-caption dez_b mb-5">
+                                <div class="carousel-caption dez_b mb-5 d-none d-md-block">
                                     <h1 class="display-2 color_Text1" style="color: #ffc107; text-shadow: 2px 2px 8px black;">Aqui você encontra</h1>
                                     <h3>Produtos Indigenas</h3>
                                     <button type="button" class="btn btn-outline-light btn-lg">Promoções</button>
@@ -150,11 +150,11 @@
 
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselSite" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Anterior</span>
+                            <span class="visually-hidden"></span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselSite" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Avançar</span>
+                            <span class="visually-hidden"></span>
                         </button>
                     </div>
                     <!---------- Fim do SlideBar ---------->
