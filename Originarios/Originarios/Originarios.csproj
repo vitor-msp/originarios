@@ -221,6 +221,7 @@
     <Content Include="Images\banner3.png" />
     <Content Include="Images\banner4.png" />
     <Content Include="Images\banner5.png" />
+    <Content Include="Images\bannerFloresta.png" />
     <Content Include="Images\cadastrar.png" />
     <Content Include="Images\Carla.png" />
     <Content Include="Images\carrinho.png" />
@@ -229,12 +230,14 @@
     <Content Include="Images\Diego.png" />
     <Content Include="Images\entrar.png" />
     <Content Include="Images\fale-conosco.png" />
+    <Content Include="Images\fale.png" />
     <Content Include="Images\favico.png" />
     <Content Include="Images\favico3.png" />
     <Content Include="Images\galeria2.jpeg" />
     <Content Include="Images\galeria3.png" />
     <Content Include="Images\galeria4.jpg" />
     <Content Include="Images\github.svg" />
+    <Content Include="Images\grafismo.png" />
     <Content Include="Images\home.png" />
     <Content Include="Images\img1.png" />
     <Content Include="Images\img2.png" />
@@ -242,6 +245,7 @@
     <Content Include="Images\img4.png" />
     <Content Include="Images\imgPost.png" />
     <Content Include="Images\inicial.jpg" />
+    <Content Include="Images\inicio.png" />
     <Content Include="Images\John.png" />
     <Content Include="Images\login.png" />
     <Content Include="Images\logo1.png" />
@@ -249,6 +253,7 @@
     <Content Include="Images\loja.png" />
     <Content Include="Images\originarios-cortado.png" />
     <Content Include="Images\originarios.png" />
+    <Content Include="Images\produtos.png" />
     <Content Include="Images\produtos\1.jpg" />
     <Content Include="Images\produtos\2.jpg" />
     <Content Include="Images\produtos\3.jpg" />

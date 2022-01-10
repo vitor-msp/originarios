@@ -112,8 +112,8 @@
     {
         @Html.AntiForgeryToken()
 
-        @Html.ActionLink("Voltar", "Index", "Postagens", null, htmlAttributes: new { @class = "btn btn-light" })
-        @Html.ActionLink("Editar", "Edit", "Postagens", routeValues: new { id = Model.id_post }, htmlAttributes: new { @class = "btn btn-primary mx-sm-4" })
+        @Html.ActionLink("Voltar", "Index", "Postagens", null, htmlAttributes: new { @class = "btn btn-secondary" })
+        @Html.ActionLink("Editar", "Edit", "Postagens", routeValues: new { id = Model.id_post }, htmlAttributes: new { @class = "btn btn-warning mx-sm-4" })
         <input type="submit" value="Deletar" class="btn btn-danger" />
     }
 </div>
